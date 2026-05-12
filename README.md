@@ -1,16 +1,86 @@
-# React + Vite
+# Notes App (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple notes app built with React and Vite.
 
-Currently, two official plugins are available:
+You can:
+- Add a note title and description
+- View notes instantly in the recent notes panel
+- Delete any note
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- React 19
+- Vite 8
+- Tailwind CSS 4
+- Lucide React
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+### 1. Clone the repository
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/98ankit-mishra/REACT-based-NOTE-APP.git
+cd REACT-based-NOTE-APP
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Start development server
+
+```bash
+npm run dev
+```
+
+Open the app in your browser using the local URL shown in terminal (usually `http://localhost:5173`).
+
+## Available Scripts
+
+- `npm run dev` - Start Vite dev server
+- `npm run build` - Create production build
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
+
+## Project Structure
+
+```text
+13-notes-app/
+	public/
+	src/
+		assets/
+		App.jsx
+		index.css
+		main.jsx
+	index.html
+	package.json
+	vite.config.js
+```
+
+## Common Issue (Windows + OneDrive)
+
+If you get this error while starting dev server:
+
+```text
+EPERM: operation not permitted, rmdir ...\node_modules\.vite\deps
+```
+
+It means the Vite cache folder is locked (commonly by OneDrive sync).
+
+Quick fix (PowerShell):
+
+```powershell
+icacls "node_modules\.vite\deps" /grant:r "$env:USERNAME`:F" /t /c 2>$null
+Remove-Item -Path "node_modules\.vite\deps" -Force -Recurse -ErrorAction SilentlyContinue
+npm run dev
+```
+
+Permanent fix:
+- Move project outside OneDrive synced folders
+- Or exclude `node_modules` from sync
+
+## Author
+
+Ankit Mishra
